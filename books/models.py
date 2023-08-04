@@ -7,6 +7,8 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     isbn = models.CharField(max_length=17)
+    def __str__(self):
+        return self.title
 
 
 class Author(models.Model):
@@ -14,6 +16,10 @@ class Author(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     bio = models.TextField()
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+    
 
 
 class BookAuthor(models.Model):
@@ -25,7 +31,7 @@ class BookReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     comment = models.TextField()
-    start_given = models.IntegerField(
+    stars_given = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
         
     )
