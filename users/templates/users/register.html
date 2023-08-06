@@ -7,8 +7,10 @@
 </head>
 <body>
     <h1>Register Page</h1>
-    <form action="{% url 'users:register' %}" method="post">{% csrf_token %}
-        <label for="username">Username:</label>
+    <form action="{% url 'users:register' %}" method="post" style="display: flex; flex-direction: column;">{% csrf_token %}
+        {{ form }}
+        {% comment %} {{ form.as_p }} {% endcomment %}
+        {% comment %} <label for="username">Username:</label>
         <input id="username" type="text" name="username" /><br/><br/>
 
         <label for="first_name">First name:</label>
@@ -21,8 +23,8 @@
         <input id="email" type="email" name="email" /><br/><br/>
 
         <label for="password">Password:</label>
-        <input id="password" type="password" name="password" /><br/><br/>
-        
+        <input id="password" type="password" name="password" /><br/><br/> {% endcomment %}
+        <p></p>
         <button type="submit">submit</button>
     </form>
     
