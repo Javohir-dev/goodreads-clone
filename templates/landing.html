@@ -6,12 +6,20 @@
     <title>Landing page</title>
 </head>
 <body>
-
-    <h1>Landing page</h1>
-    <p>
-        <a href="{% url "users:register" %}">Register</a> /
-        <a href="{% url "users:login" %}">Login</a>
-    </p>
+    <div style="display: flex; justify-content: space-between;">
+        <div>
+            <h1>Landing page</h1>
+            <p>
+                <a href="{% url "users:register" %}">Register</a> /
+                <a href="{% url "users:login" %}">Login</a>
+            </p>
+        </div>
+        <div>
+            <h1>
+                <a href="{% url 'books:books_list' %}">Books List</a>
+            </h1>
+        </div>
+    </div>
     
 </body>
 </html>

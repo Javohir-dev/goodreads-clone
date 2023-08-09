@@ -6,6 +6,7 @@
     <title>Register Page</title>
 </head>
 <body>
+    <a href="{% url 'landing_page' %}">Back</a>
     <h1>Register Page</h1>
     <form action="{% url 'users:register' %}" method="post" style="display: flex; flex-direction: column;">{% csrf_token %}
         {{ form }}
