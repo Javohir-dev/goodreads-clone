@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile page</title>
+</head>
+<body>
+    <a href="{% url 'landing_page' %}">Back</a>
+{% comment %} 
+    <h1>Profile Page of {{ user.username }}</h1>
+    <b>Welcome! `{{ user.first_name.title }}`</b>
+    <h2>{{ user.first_name.title }} {{ user.last_name.title }}</h2>
+    <br><br><br><br> {% endcomment %}
+    <h2 >Your Info:</h2>
+    <b>
+        username: {{ user.username }},<br/>
+        first_name: {{ user.first_name }},<br/>
+        last_name: {{ user.last_name }},<br/>
+        email: {{ user.email }},<br/>
+    </b>
+</body>
+</html>

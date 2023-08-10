@@ -59,12 +59,7 @@ class RegistrationTestCase(TestCase):
 
     def test_unique_username(self):
         # 1. create a username
-        user = User.objects.create(
-            username="javohir",
-            first_name="javohir",
-            # last_name="khamidullev",
-            # email="javohir.py@gmail.com",
-        )
+        user = User.objects.create(username="javohir", first_name="javohir")
         user.set_password("somepassword")
         user.save()
 
@@ -136,6 +131,30 @@ class LginTestCase(TestCase):
         self.assertFalse(user.is_authenticated)
 
         
+class ProfileTestCase(TestCase):
+    def test_login_required(self):
+        response = self.client.get(reverse("users:profile"))
 
-
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("users:login") + "?next=/users/dashboard/")
         
+    def test_profile_details(self):
+        user = User.objects.create(
+            username="javohir.coder",
+            first_name="javohir",
+            last_name="nimadur",
+            email="javohir@gmail.com",
+        )
+        user.set_password("somepassword")
+        user.save()
+
+        self.client.login(username="javohir.coder", password="somepassword")
+        response = self.client.get(reverse("users:profile"))
+
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, user.username)
+        self.assertContains(response, user.first_name)
+        self.assertContains(response, user.last_name)
+        self.assertContains(response, user.email)
+

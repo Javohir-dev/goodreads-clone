@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.views import View
@@ -42,3 +43,6 @@ class LoginView(View):
         else:
             return render(request, "users/login.html", {'login_form': login_form})
 
+class ProfileView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, "users/profile.html")

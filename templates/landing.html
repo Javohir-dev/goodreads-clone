@@ -11,14 +11,12 @@
             <h1>Landing page</h1>
             <p>
                 <a href="{% url "users:register" %}">Register</a> /
-                <a href="{% url "users:login" %}">Login</a>
+                <a href="{% url "users:login" %}">Login</a> /
+                <a href="{% url 'books:books_list' %}">Books List</a> /
+                <a href="{% url 'users:profile' %}">Dashboard</a>
             </p>
         </div>
-        <div>
-            <h1>
-                <a href="{% url 'books:books_list' %}">Books List</a>
-            </h1>
-        </div>
+        <div></div>
     </div>
     
 </body>
