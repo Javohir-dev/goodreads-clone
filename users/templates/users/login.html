@@ -9,6 +9,11 @@
     <a href="{% url 'landing_page' %}">Back</a>
 
     <h1>Login Page</h1>
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
 
     <form method="POST">{% csrf_token %}
         {{ login_form.as_p }}

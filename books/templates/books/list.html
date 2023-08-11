@@ -8,7 +8,11 @@
 <body>
     <a href="{% url 'landing_page' %}">Back</a>
     <h1>Books List</h1>
-
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
     {% if books %}
         <ol>
             {% for book in books %}

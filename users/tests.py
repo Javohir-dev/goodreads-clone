@@ -83,12 +83,14 @@ class RegistrationTestCase(TestCase):
         self.assertFormError(response, 'form', 'username', 'A user with that username already exists.')
 
 
-class LginTestCase(TestCase):
-    def test_successful_login(self):
-        db_user = User.objects.create(username="javohir", first_name="javohir")
-        db_user.set_password("somepassword")
-        db_user.save()
+class LoginTestCase(TestCase):
+    def setUp(self):
+        self.db_user = User.objects.create(username="javohir", first_name="javohir")
+        self.db_user.set_password("somepassword")
+        self.db_user.save()
 
+
+    def test_successful_login(self):
         self.client.post(
             reverse("users:login"),
             data={
@@ -101,11 +103,20 @@ class LginTestCase(TestCase):
 
         self.assertTrue(user.is_authenticated)
     
-    def test_wrong_credentials(self):
-        db_user = User.objects.create(username="javohir", first_name="javohir")
-        db_user.set_password("somepassword")
-        db_user.save()
+    def test_logout(self):
+        self.client.login(
+            username="javohir",
+            password="somepassword"
+        )
 
+        user = get_user(self.client)
+        self.assertTrue(user.is_authenticated)
+
+        self.client.get(reverse("users:logout"))
+        user = get_user(self.client)
+        self.assertFalse(user.is_authenticated)
+
+    def test_wrong_credentials(self):
         self.client.post(
             reverse("users:login"),
             data={

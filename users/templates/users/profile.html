@@ -13,11 +13,11 @@
     <h2>{{ user.first_name.title }} {{ user.last_name.title }}</h2>
     <br><br><br><br> {% endcomment %}
     <h2 >Your Info:</h2>
-    <b>
-        username: {{ user.username }},<br/>
-        first_name: {{ user.first_name }},<br/>
-        last_name: {{ user.last_name }},<br/>
-        email: {{ user.email }},<br/>
-    </b>
+    <p>
+        <strong>username: </strong>{{ user.username }},<br/><br/>
+        <strong>first_name: </strong>{{ user.first_name }},<br/><br/>
+        <strong>last_name: </strong>{{ user.last_name }},<br/><br/>
+        <strong>email: </strong>{{ user.email }},<br/><br/>
+    </p>
 </body>
 </html>
