@@ -7,11 +7,12 @@
 </head>
 <body>
     <a href="{% url 'landing_page' %}">Back</a>
-{% comment %} 
-    <h1>Profile Page of {{ user.username }}</h1>
-    <b>Welcome! `{{ user.first_name.title }}`</b>
-    <h2>{{ user.first_name.title }} {{ user.last_name.title }}</h2>
-    <br><br><br><br> {% endcomment %}
+    {% comment %} 
+        <h1>Profile Page of {{ user.username }}</h1>
+        <b>Welcome! `{{ user.first_name.title }}`</b>
+        <h2>{{ user.first_name.title }} {{ user.last_name.title }}</h2>
+        <br><br><br><br>
+    {% endcomment %}
     <h2 >Your Info:</h2>
     <p>
         <strong>username: </strong>{{ user.username }},<br/><br/>

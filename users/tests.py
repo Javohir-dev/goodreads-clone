@@ -89,7 +89,6 @@ class LoginTestCase(TestCase):
         self.db_user.set_password("somepassword")
         self.db_user.save()
 
-
     def test_successful_login(self):
         self.client.post(
             reverse("users:login"),
@@ -168,4 +167,3 @@ class ProfileTestCase(TestCase):
         self.assertContains(response, user.first_name)
         self.assertContains(response, user.last_name)
         self.assertContains(response, user.email)
-
