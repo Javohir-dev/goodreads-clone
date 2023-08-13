@@ -1,24 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile page</title>
-</head>
-<body>
-    <a href="{% url 'landing_page' %}">Back</a>
-    {% comment %} 
-        <h1>Profile Page of {{ user.username }}</h1>
-        <b>Welcome! `{{ user.first_name.title }}`</b>
-        <h2>{{ user.first_name.title }} {{ user.last_name.title }}</h2>
-        <br><br><br><br>
-    {% endcomment %}
-    <h2 >Your Info:</h2>
-    <p>
-        <strong>username: </strong>{{ user.username }},<br/><br/>
-        <strong>first_name: </strong>{{ user.first_name }},<br/><br/>
-        <strong>last_name: </strong>{{ user.last_name }},<br/><br/>
-        <strong>email: </strong>{{ user.email }},<br/><br/>
-    </p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+Login Page
+{% endblock  %}
+
+
+{% block content %}
+
+
+<h2 >Your Info:</h2>
+<p>
+    <strong>username: </strong>{{ user.username }},<br/><br/>
+    <strong>first_name: </strong>{{ user.first_name }},<br/><br/>
+    <strong>last_name: </strong>{{ user.last_name }},<br/><br/>
+    <strong>email: </strong>{{ user.email }},<br/><br/>
+</p>
+
+{% endblock  %}

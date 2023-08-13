@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing page</title>
-</head>
-<body>
-    <div style="display: flex; justify-content: space-between;">
-        <div>
-            <h1>Landing page</h1>
-            {% if messages %}
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            {% endif %}
-            <p>
-                <a href="{% url 'books:books_list' %}">Books List</a> /
-                <a href="{% url 'users:profile' %}">Dashboard</a> /
-                <a href="{% url "users:register" %}">Register</a> /
+{% extends 'base.html' %}
 
-                {% if user.is_authenticated %}
-                    <a href="{% url "users:logout" %}">Logout</a>
-                {% else %}
-                    <a href="{% url "users:login" %}">Login</a>
-                {% endif %}
-            </p>
-        </div>
-        <div></div>
-    </div>
-</body>
-</html>
+{% block content %}
+<h1>Landing page</h1>
+
+{% endblock  %}
