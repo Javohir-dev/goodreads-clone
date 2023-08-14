@@ -18,7 +18,6 @@ Books List Page
                 <li>
                     <a href="{% url 'books:book_detail' book.id %}">{{ book }}</a>
                 </li>
-                <br/>
             {% endfor %}
         </ol>
     {% else %}

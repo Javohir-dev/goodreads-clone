@@ -8,9 +8,9 @@ Login Page
 {% block content %}
 
     <h1>Register Page</h1>
-    <form action="{% url 'users:register' %}" method="post" style="display: flex; flex-direction: column;">{% csrf_token %}
-        {{ form }}
-        {% comment %} {{ form.as_p }} {% endcomment %}
+    <form action="{% url 'users:register' %}" method="post">{% csrf_token %}
+        {% comment %} {{ form }} {% endcomment %}
+        {{ form.as_p }}
         {% comment %} <label for="username">Username:</label>
         <input id="username" type="text" name="username" /><br/><br/>
 

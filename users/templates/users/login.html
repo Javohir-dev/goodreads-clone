@@ -16,7 +16,7 @@ Login Page
 
     <form method="POST">{% csrf_token %}
         {{ login_form.as_p }}
-        <button type="submit">Log in</button>
+        <button type="submit">Log in</button> <span>New to Goodreads? <a href="{% url 'users:register' %}"> Join now</a></span>
     </form>
 
 {% endblock  %}
