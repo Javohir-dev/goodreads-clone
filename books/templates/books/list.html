@@ -7,11 +7,7 @@ Books List Page
 
 {% block content %}
     <h1>Books List</h1>
-    {% if messages %}
-        {% for message in messages %}
-            {{ message }}
-        {% endfor %}
-    {% endif %}
+
     {% if books %}
         <ol>
             {% for book in books %}

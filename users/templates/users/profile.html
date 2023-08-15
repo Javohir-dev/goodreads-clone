@@ -8,12 +8,13 @@ Login Page
 {% block content %}
 
 
-<h2 >Your Info:</h2>
-<p>
-    <strong>username: </strong>{{ user.username }},<br/><br/>
-    <strong>first_name: </strong>{{ user.first_name }},<br/><br/>
-    <strong>last_name: </strong>{{ user.last_name }},<br/><br/>
-    <strong>email: </strong>{{ user.email }},<br/><br/>
-</p>
+    <h2 >Your Info:</h2>
+    <p>
+        <strong>username: </strong>{{ user.username }},<br/><br/>
+        <strong>first_name: </strong>{{ user.first_name }},<br/><br/>
+        <strong>last_name: </strong>{{ user.last_name }},<br/><br/>
+        <strong>email: </strong>{{ user.email }},<br/><br/>
+    </p>
+    <a href="{% url 'users:profile_edit' %}" class="btn btn-primary">Edit Profile</a>
 
 {% endblock  %}
