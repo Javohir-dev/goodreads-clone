@@ -1,20 +1,48 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Login Page
+Profile Page
 {% endblock  %}
 
 
 {% block content %}
-
-
-    <h2 >Your Info:</h2>
-    <p>
-        <strong>username: </strong>{{ user.username }},<br/><br/>
-        <strong>first_name: </strong>{{ user.first_name }},<br/><br/>
-        <strong>last_name: </strong>{{ user.last_name }},<br/><br/>
-        <strong>email: </strong>{{ user.email }},<br/><br/>
-    </p>
-    <a href="{% url 'users:profile_edit' %}" class="btn btn-primary">Edit Profile</a>
-
+    <div class="container rounded bg-white mt-5">
+        <div class="row align-items-center">
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <div class="profile-picture" style="width: 300px">
+                        <img class="rounded-circle mt-5" src="{{ user.profile_picture.url }}" style="width: 100%" alt="profile picture">
+                    </div>
+                    <span class="font-weight-bold">{{ user.last_name }} {{ user.first_name }}</span>
+                    <span class="text-black-50">{{ user.email }}</span>
+                    <span>{{ user.username }}</span>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h1>{{ user.last_name }} {{ user.first_name }}</h1>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6 mt-4">
+                            <input type="text" name="username" class="form-control" placeholder="Username" value="{{ user.username }}" disabled="">
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <input ype="text" name="forst_name" class="form-control" placeholder="Email" value="{{ user.email }}" disabled="">
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <input type="text" name="forst_name" class="form-control" placeholder="first name" value="{{ user.first_name }}" disabled="">
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <input type="text" name="last_name" class="form-control" placeholder="last name" value="{{ user.last_name }}" disabled="">
+                        </div>
+                    </div>
+                    <div class="mt-5 text-right">
+                        <a href="{% url 'users:profile_edit' %}" class="btn btn-primary profile-button px-4" type="button">Edit profile</a>
+                        <a href="{% url 'users:logout' %}" class="btn text-white profile-button" type="button" style="background-color: #6c757d">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
 {% endblock  %}
