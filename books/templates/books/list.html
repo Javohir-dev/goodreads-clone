@@ -7,17 +7,24 @@ Books List Page
 
 {% block content %}
     <h1>Books List</h1>
-
-    {% if books %}
-        <ol>
+    <div class="row">
+        {% if books %}
             {% for book in books %}
-                <li>
-                    <a href="{% url 'books:book_detail' book.id %}">{{ book }}</a>
-                </li>
-            {% endfor %}
-        </ol>
-    {% else %}
-        No books found.
-    {% endif %}
+                <div class="row mb-4">
+                    <div class="col-2">
+                        <img src="{{ book.cover_picture.url }}" alt="cover Picture" class="cover_pic" />
+                    </div>
+                    <div class="col-6 ms-5">
+                        <a href="{% url 'books:book_detail' book.id %}">{{ book.title }}</a>
 
+                        <p>
+                            {{ book.description | truncatewords:90 }}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            No books found.
+        {% endif %}
+    </div>
 {% endblock  %}

@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
 
 {% block title %}
 Login Page
@@ -7,16 +9,24 @@ Login Page
 
 {% block content %}
    
-    <h1>Login Page</h1>
     {% if messages %}
         {% for message in messages %}
             {{ message }}
         {% endfor %}
     {% endif %}
-
-    <form method="POST">{% csrf_token %}
-        {{ login_form.as_p }}
-        <button type="submit">Log in</button> <span>New to Goodreads? <a href="{% url 'users:register' %}"> Join now</a></span>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm-6">
+                <h2>Login</h2>
+            
+                <form method="POST">{% csrf_token %}
+                    {{ login_form | crispy }}
+                    <button type="submit" class="btn btn-primary">Log in</button> 
+                    <span>New to Goodreads? <a href="{% url 'users:register' %}"> Get register</a></span>
+                </form>
+            </div>
+        </div>
+    </div>
+    
 
 {% endblock  %}

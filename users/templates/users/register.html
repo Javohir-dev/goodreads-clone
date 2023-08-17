@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
 
 {% block title %}
 Login Page
@@ -6,27 +8,19 @@ Login Page
 
 
 {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm-4">
+                <h2>Register</h2>
+                <form action="{% url 'users:register' %}" method="post">{% csrf_token %}
+                    {{ form | crispy }}
+                    <p></p>
+                    <button type="submit" class="btn btn-primary">submit</button>
+                    <span>You already have an account. <a href="{% url 'users:login' %}"> Login</a></span>
+                </form>
 
-    <h1>Register Page</h1>
-    <form action="{% url 'users:register' %}" method="post">{% csrf_token %}
-        {% comment %} {{ form }} {% endcomment %}
-        {{ form.as_p }}
-        {% comment %} <label for="username">Username:</label>
-        <input id="username" type="text" name="username" /><br/><br/>
-
-        <label for="first_name">First name:</label>
-        <input id="first_name" type="text" name="first_name" /><br/><br/>
-
-        <label for="last_name">Last name:</label>
-        <input id="last_name" type="text" name="last_name" /><br/><br/>
-
-        <label for="email">Email:</label>
-        <input id="email" type="email" name="email" /><br/><br/>
-
-        <label for="password">Password:</label>
-        <input id="password" type="password" name="password" /><br/><br/> {% endcomment %}
-        <p></p>
-        <button type="submit">submit</button>
-    </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock  %}

@@ -1,0 +1,13 @@
+img {
+    font-size: 100%;
+}
+
+.cover_pic {
+    width: 250px;
+    /* height: 319px; */
+}
+
+.detail_cover_pic {
+    width: 400px;
+    /* height: 319px; */
+}
