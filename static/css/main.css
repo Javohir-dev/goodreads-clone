@@ -11,3 +11,45 @@ img {
     width: 400px;
     /* height: 319px; */
 }
+
+.active_pagination {
+    background: #eadec3;
+    color: #835546;
+}
+
+.active_pagination:hover {
+    background: #835546;
+    color: white;
+}
+
+.pagination_link {
+    color: #835546;
+}
+
+.pagination_link:hover {
+    background: #f2f0ec;
+    color: #835546;
+}
+
+.book_title_link {
+    text-decoration: none;
+    color: #835546;
+}
+
+.book_title_link:hover {
+    text-decoration: underline;
+    color: #835546;
+}
+
+.btn_search {
+    background-color: #835545 !important;
+    font-weight: bold;
+    color: white;
+    border: 1px solid #835546;
+}
+
+.btn_search:hover {
+    background-color: #ffffff !important;
+    color: #835546;
+    border: 1px solid #835546;
+}
