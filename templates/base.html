@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Goodreads Clone{% endblock  %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     {% comment %} custom style {% endcomment %}
@@ -13,13 +14,19 @@
 <body>
     <nav class="navbar navbar-light navbar-expand-lg mb-4" style="background-color: #F4F1EA;">
         <div class="container-md">
-            <a class="navbar-brand" href="{% url 'landing_page' %}" style="color: #835546 !important; font-size: 1.7rem">Good<strong>Reads </strong> Clone</a>
+            <a class="navbar-brand" href="{% url 'landing_page' %}" style="width: 140px">
+                <img src="{% static 'img/brand.png' %}" alt="Logo" />
+            </a>
+            {% comment %} <a class="navbar-brand" href="{% url 'landing_page' %}" style="color: #835546 !important; font-size: 1.7rem">good<strong>Reads </strong> Clone</a> {% endcomment %}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item text-center">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}" style="color: #835546 !important; font-size: 1rem">Home</a>
+                    </li>
                     <li class="nav-item text-center">
                         <a class="nav-link active" aria-current="page" href="{% url 'books:books_list' %}" style="color: #835546 !important; font-size: 1rem">Books</a>
                     </li>

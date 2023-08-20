@@ -6,6 +6,7 @@ from users.models import CustomUser
 
 
 class RegistrationTestCase(TestCase):
+    
     def test_user_account_is_created(self):
         self.client.post(
             reverse("users:register"),
@@ -85,6 +86,7 @@ class RegistrationTestCase(TestCase):
 
 
 class LoginTestCase(TestCase):
+
     def setUp(self):
         self.db_user = CustomUser.objects.create(username="javohir", first_name="javohir")
         self.db_user.set_password("somepassword")
@@ -143,6 +145,7 @@ class LoginTestCase(TestCase):
 
         
 class ProfileTestCase(TestCase):
+
     def test_login_required(self):
         response = self.client.get(reverse("users:profile"))
 

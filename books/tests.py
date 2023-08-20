@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from books.views import BooksView, BooksDetailView
 from books.models import Book
+from users.models import CustomUser
 
 class BooksTestCase(TestCase):
 
@@ -10,7 +10,6 @@ class BooksTestCase(TestCase):
         response = self.client.get(reverse("books:books_list"))
 
         self.assertContains(response, "No books found.")
-
 
     def testbooks_list(self):
         book1 = Book.objects.create(title="Book1", description="description1", isbn="3215464511")
@@ -24,7 +23,6 @@ class BooksTestCase(TestCase):
 
         response = self.client.get(reverse("books:books_list") +"?page=2&page_size=2")
         self.assertContains(response, book3.title)
-
 
     def test_detail_page(self):
         book = Book.objects.create(title="Book1", description="description1", isbn="3215464511")
@@ -51,3 +49,53 @@ class BooksTestCase(TestCase):
         self.assertContains(response, book3.title)
         self.assertNotContains(response, book2.title)
         self.assertNotContains(response, book1.title)
+
+class BookReviewsTestCase(TestCase):
+    
+    def test_add_review(self):
+        book = Book.objects.create(title="Book1", description="description1", isbn="3215464511")
+        user = CustomUser.objects.create(
+            username="javohir.coder",
+            first_name="javohir",
+            last_name="nimadur",
+            email="javohir@gmail.com",
+        )
+        user.set_password("somepassword")
+        user.save()
+        self.client.login(username="javohir.coder", password="somepassword")
+
+        self.client.post(reverse("books:reviews", kwargs={"id": book.id}), data={
+            "stars_given": 3,
+            "comment": "somecomment",
+        })
+        book_reviews = book.bookreview_set.all()
+
+        self.assertEqual(book_reviews.count(), 1)
+        self.assertEqual(book_reviews[0].stars_given, 3)
+        self.assertEqual(book_reviews[0].comment, "somecomment")
+        self.assertEqual(book_reviews[0].book, book)
+        self.assertEqual(book_reviews[0].user, user)
+
+
+    def test_add_wrong_review(self):
+        book = Book.objects.create(title="Book1", description="description1", isbn="3215464511")
+        user = CustomUser.objects.create(
+            username="javohir.coder",
+            first_name="javohir",
+            last_name="nimadur",
+            email="javohir@gmail.com",
+        )
+        user.set_password("somepassword")
+        user.save()
+        self.client.login(username="javohir.coder", password="somepassword")
+
+        self.client.post(reverse("books:reviews", kwargs={"id": book.id}), data={
+            "stars_given": 6,
+            "comment": "somecomment",
+        })
+        book_reviews = book.bookreview_set.all()
+
+        self.assertEqual(book_reviews.count(), 0)
+        self.assertNotEqual(book_reviews.count(), 1)
+
+

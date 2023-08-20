@@ -1,5 +1,5 @@
 img {
-    font-size: 100%;
+    width: 100%;
 }
 
 .cover_pic {
@@ -52,4 +52,96 @@ img {
     background-color: #ffffff !important;
     color: #835546;
     border: 1px solid #835546;
+}
+
+/* ==================== */
+.review_user_pic {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.review_user_pic>img {
+    border-radius: 50%;
+}
+
+
+/* ================== */
+
+.posts-content {
+    margin-top: 20px;
+}
+
+.ui-w-40 {
+    width: 40px !important;
+    height: auto;
+}
+
+.default-style .ui-bordered {
+    border: 1px solid rgba(24, 28, 33, 0.06);
+}
+
+.ui-bg-cover {
+    background-color: transparent;
+    background-position: center center;
+    background-size: cover;
+}
+
+.ui-rect {
+    padding-top: 50% !important;
+}
+
+.ui-rect,
+.ui-rect-30,
+.ui-rect-60,
+.ui-rect-67,
+.ui-rect-75 {
+    position: relative !important;
+    display: block !important;
+    padding-top: 100% !important;
+    width: 100% !important;
+}
+
+.d-flex,
+.d-inline-flex,
+.media,
+.media>:not(.media-body),
+.jumbotron,
+.card {
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+}
+
+.bg-dark {
+    background-color: rgba(24, 28, 33, 0.9) !important;
+}
+
+.card-footer,
+.card hr {
+    border-color: rgba(24, 28, 33, 0.06);
+}
+
+.ui-rect-content {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+}
+
+.default-style .ui-bordered {
+    border: 1px solid rgba(24, 28, 33, 0.06);
+}
+
+.media .user_image {
+    width: 40px;
+    height: 40px;
+}
+
+.user_image {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user_image>img {
+    width: 100%;
 }
