@@ -14,7 +14,22 @@ Books Detail Page
         </div>
         <div class="col">
             <h2>{{ book.title }}</h2>
-            <p>{{ book.description }}</p>
+            <h5 class="mb-3">
+                <span>
+                    Authored by:
+                </span>
+                <span class="fst-italic" style="color: #7d7a7a;">
+                    {% for book_author in book.bookauthor_set.all %}
+                        {% if forloop.last %}
+                            {{ book_author.author.full_name }}
+                        {% else %}
+                            {{ book_author.author.full_name }},
+                        {% endif %}
+
+                    {% endfor %}
+                </span>
+            </h5>
+            <p style="text-align: justify;">{{ book.description }}</p>
         </div>
     </div>
 

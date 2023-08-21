@@ -1,3 +1,20 @@
+.nav_active {
+    font-weight: bold;
+    color: #835546 !important;
+}
+
+.hover {
+    font-weight: bold;
+    color: #888180;
+    font-size: 1rem;
+}
+
+.hover:hover {
+    font-weight: bold;
+    color: #844e3c !important;
+    font-size: 1rem;
+}
+
 img {
     width: 100%;
 }
