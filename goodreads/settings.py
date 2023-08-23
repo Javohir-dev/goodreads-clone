@@ -149,11 +149,11 @@ STATICFILES_FINDERS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'coderjek@gmail.com'
-# EMAIL_HOST_PASSWORD = '220202Jj'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'coderjek@gmail.com'
+EMAIL_HOST_PASSWORD = 'hwgdquiigeanhypp'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

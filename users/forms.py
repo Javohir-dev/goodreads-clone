@@ -13,13 +13,13 @@ class UserCreateForm(forms.ModelForm):
         user.set_password(self.cleaned_data['password'])
         user.save()
 
-        # if user.email:
-        #     send_mail(
-        #         "Welcome to Goodreads Clone!",
-        #         f"Hi, {user.username} Welcome to Goodreads.com Clone. Enjoy books and review.",
-        #         "coderjek@gmail.com",
-        #         [user.email]
-        #     )
+        if user.email:
+            send_mail(
+                "Welcome to Goodreads Clone!",
+                f"Hi, {user.username} Welcome to Goodreads.com Clone. Enjoy books and review.",
+                "coderjek@gmail.com",
+                [user.email]
+            )
 
         return user
 
