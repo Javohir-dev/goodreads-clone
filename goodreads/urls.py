@@ -9,7 +9,9 @@ urlpatterns = [
     path('home/', home_page, name='home'),
     path('users/', include("users.urls")),
     path('books/', include("books.urls")),
+    path('api/', include("api.urls")),
 
+    path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
