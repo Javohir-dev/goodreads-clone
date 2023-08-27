@@ -86,7 +86,6 @@ class BookReviewsTestCase(TestCase):
         self.assertEqual(book_reviews[0].book, book)
         self.assertEqual(book_reviews[0].user, user)
 
-
     def test_add_wrong_review(self):
         book = Book.objects.create(title="Book1", description="description1", isbn="3215464511")
         user = CustomUser.objects.create(
@@ -107,5 +106,23 @@ class BookReviewsTestCase(TestCase):
 
         self.assertEqual(book_reviews.count(), 0)
         self.assertNotEqual(book_reviews.count(), 1)
+
+    # def test_edit_review(self):
+    #     book = Book.objects.create(title="Book1", description="description1", isbn="3215464511")
+    #     user = CustomUser.objects.create(
+    #         username="javohir.coder",
+    #         first_name="javohir",
+    #         last_name="nimadur",
+    #         email="javohir@gmail.com",
+    #     )
+    #     user.set_password("somepassword")
+    #     user.save()
+    #     self.client.login(username="javohir.coder", password="somepassword")
+
+    #     self.client.post(reverse("books:reviews", kwargs={"id": book.id}), data={
+    #         "stars_given": 4,
+    #         "comment": "somecomment",
+    #     })
+    #     book_reviews = book.bookreview_set.all()
 
 

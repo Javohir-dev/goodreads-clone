@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Review Edit
+{% endblock  %}
+
+{% block content %}
+
+    <h1>Edit review</h1>
+
+    <div>
+        <h2 class="mt-4">Are you sure you want to delete the review?</h2>
+        <div class="fs-5 mt-3">
+            <strong>Book: </strong>
+            {{ book.title }}
+        </div>
+        <div class="mt-2">
+            <strong>Comment: </strong>
+            {{ review.comment }}
+        </div>
+        <div class="mt-5">
+            <a href="{% url 'books:delete_review' book.id review.id %}" class="btn btn-danger px-5">Delete</a>
+            <a href="{% url 'books:book_detail' book.id %}" class="btn btn-secondary px-5">Cancel</a>
+        </div>
+    </div>
+
+{% endblock  %}

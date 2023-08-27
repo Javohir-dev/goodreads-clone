@@ -8,5 +8,5 @@ def send_email(subject, message, recipient_list):
         subject,
         message,
         "coderjek@gmail.com",
-        recipient_list,
+        recipient_list
     )
