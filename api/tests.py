@@ -17,7 +17,7 @@ class BookReviewAPITestCase(APITestCase):
         book = Book.objects.create(title="Book1", description="description1", isbn="3215464511")
         br = BookReview.objects.create(book=book, user=self.user, stars_given=5, comment='Very good book.')
 
-        response = self.client.get(reverse('api:review_detail', kwargs={'id': br.id}))
+        response = self.client.get(reverse('api:review-detail', kwargs={'id': br.id}))
         
         # BookReview
         self.assertEqual(response.status_code, 200)
@@ -39,7 +39,7 @@ class BookReviewAPITestCase(APITestCase):
         book = Book.objects.create(title="Book1", description="description1", isbn="3215464511")
         br = BookReview.objects.create(book=book, user=self.user, stars_given=5, comment='Very good book.')
 
-        response = self.client.delete(reverse('api:review_detail', kwargs={'id': br.id}))
+        response = self.client.delete(reverse('api:review-detail', kwargs={'id': br.id}))
 
         self.assertEqual(response.status_code, 204)
         self.assertFalse(BookReview.objects.filter(id=br.id).exists())
@@ -49,7 +49,7 @@ class BookReviewAPITestCase(APITestCase):
         book = Book.objects.create(title="Book1", description="description1", isbn="3215464511")
         br = BookReview.objects.create(book=book, user=self.user, stars_given=5, comment='Very good book.')
 
-        response = self.client.patch(reverse('api:review_detail', kwargs={'id': br.id}), data={'stars_given':4})
+        response = self.client.patch(reverse('api:review-detail', kwargs={'id': br.id}), data={'stars_given':4})
         br.refresh_from_db()
 
 
@@ -62,7 +62,7 @@ class BookReviewAPITestCase(APITestCase):
         br = BookReview.objects.create(book=book, user=self.user, stars_given=5, comment='Very good book.')
 
         response = self.client.put(
-            reverse('api:review_detail', kwargs={'id': br.id}),
+            reverse('api:review-detail', kwargs={'id': br.id}),
             data={'stars_given':4, 'comment': 'New comment.', 'book_id': book.id, 'user_id': self.user.id}
         )
 
@@ -80,7 +80,7 @@ class BookReviewAPITestCase(APITestCase):
             'user_id': self.user.id
         }
 
-        response = self.client.post(reverse('api:review_list'), data=data)
+        response = self.client.post(reverse('api:review-list'), data=data)
         br = BookReview.objects.get(book=book)
 
         self.assertEqual(response.status_code, 201)
@@ -96,7 +96,7 @@ class BookReviewAPITestCase(APITestCase):
         br = BookReview.objects.create(book=book, user=self.user, stars_given=5, comment='Very good book.')
         br_two = BookReview.objects.create(book=book, user=user_two, stars_given=3, comment='Nice book.')
 
-        response = self.client.get(reverse('api:review_list'))
+        response = self.client.get(reverse('api:review-list'))
         br.refresh_from_db()
 
         self.assertEqual(response.status_code, 200)
@@ -105,29 +105,29 @@ class BookReviewAPITestCase(APITestCase):
         self.assertIn('next', response.data)
         self.assertIn('previous', response.data)
         # First Review 
-        self.assertEqual(response.data['results'][1]['id'], br.id)
-        self.assertEqual(response.data['results'][1]['comment'], 'Very good book.')
-        self.assertEqual(response.data['results'][1]['stars_given'], 5)
+        self.assertEqual(response.data['results'][0]['id'], br.id)
+        self.assertEqual(response.data['results'][0]['comment'], 'Very good book.')
+        self.assertEqual(response.data['results'][0]['stars_given'], 5)
         # First Review's Book
-        self.assertEqual(response.data['results'][1]['book']['id'], book.id)
-        self.assertEqual(response.data['results'][1]['book']['title'], 'Book')
-        self.assertEqual(response.data['results'][1]['book']['description'], 'description')
-        self.assertEqual(response.data['results'][1]['book']['isbn'], '3215464511')
-        # First Review's User
-        self.assertEqual(response.data['results'][1]['user']['id'], self.user.id)
-        self.assertEqual(response.data['results'][1]['user']['username'], 'javohir')
-        self.assertEqual(response.data['results'][1]['user']['first_name'], 'javohir')
-        # Second Review
-        self.assertEqual(response.data['results'][0]['id'], br_two.id)
-        self.assertEqual(response.data['results'][0]['comment'], 'Nice book.')
-        self.assertEqual(response.data['results'][0]['stars_given'], 3)
-        # Second Review's Book
         self.assertEqual(response.data['results'][0]['book']['id'], book.id)
         self.assertEqual(response.data['results'][0]['book']['title'], 'Book')
         self.assertEqual(response.data['results'][0]['book']['description'], 'description')
         self.assertEqual(response.data['results'][0]['book']['isbn'], '3215464511')
         # First Review's User
-        self.assertEqual(response.data['results'][0]['user']['id'], user_two.id)
-        self.assertEqual(response.data['results'][0]['user']['username'], 'khojiakbar')
-        self.assertEqual(response.data['results'][0]['user']['first_name'], 'Khojiakbar')
+        self.assertEqual(response.data['results'][0]['user']['id'], self.user.id)
+        self.assertEqual(response.data['results'][0]['user']['username'], 'javohir')
+        self.assertEqual(response.data['results'][0]['user']['first_name'], 'javohir')
+        # Second Review
+        self.assertEqual(response.data['results'][1]['id'], br_two.id)
+        self.assertEqual(response.data['results'][1]['comment'], 'Nice book.')
+        self.assertEqual(response.data['results'][1]['stars_given'], 3)
+        # Second Review's Book
+        self.assertEqual(response.data['results'][1]['book']['id'], book.id)
+        self.assertEqual(response.data['results'][1]['book']['title'], 'Book')
+        self.assertEqual(response.data['results'][1]['book']['description'], 'description')
+        self.assertEqual(response.data['results'][1]['book']['isbn'], '3215464511')
+        # First Review's User
+        self.assertEqual(response.data['results'][1]['user']['id'], user_two.id)
+        self.assertEqual(response.data['results'][1]['user']['username'], 'khojiakbar')
+        self.assertEqual(response.data['results'][1]['user']['first_name'], 'Khojiakbar')
 
