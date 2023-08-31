@@ -65,3 +65,16 @@ class BookReviewsAPIView(APIView):
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# from rest_framework import generics
+
+# class BookReviewDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+#     permission_classes = [IsAuthenticated]
+#     serializer_class = BookReviewSerializer
+#     queryset = BookReview.objects.all()
+#     lookup_field = 'id'
+
+# class BookReviewsAPIView(generics.ListCreateAPIView):
+#     permission_classes = [IsAuthenticated]
+#     serializer_class = BookReviewSerializer
+#     queryset = BookReview.objects.all().order_by('-created_at')
